@@ -1,1 +1,33 @@
+:host{
+    display: flex;
+}
 
+.nav-layout{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.nav-links{
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+ul {
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+}

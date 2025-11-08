@@ -3,14 +3,14 @@ import logo from './assests/Logo .svg';
 
 function Footer() {
     return (
-        <footer>
+        <footer className='footer-layout'>
             <img src={logo} alt="Little Lemon logo" />
             <table>
                 <tbody>
                     <tr>
                         <td>
-                            <h3>Navigation</h3>
                             <ul>
+                                <li><h3>Navigation</h3></li>
                                 <li><a href="#">Home</a></li>
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Menu</a></li>
@@ -20,16 +20,16 @@ function Footer() {
                             </ul>
                         </td>
                         <td>
-                            <h3>Contact</h3>
                             <ul>
+                                <li><h3>Contact</h3></li>
                                 <li>Address</li>
                                 <li>Phone number</li>
                                 <li>Email</li>
                             </ul>
                         </td>
                         <td>
-                            <h3>Social Media</h3>
                             <ul>
+                                <li><h3>Social Media</h3></li>
                                 <li>Facebook</li>
                                 <li>Instagram</li>
                                 <li>X</li>
