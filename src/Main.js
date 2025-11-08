@@ -3,14 +3,24 @@ import Hero from "./Main-Sections/Hero";
 import Specials from "./Main-Sections/Specials";
 import Testimonials from "./Main-Sections/Testimonials";
 import About from "./Main-Sections/About";
+
 function Main() {
-return(
+  return(
     <main>
+      <section id="hero">
         <Hero />
+      </section>
+      <section id="menu">
         <Specials />
-        <Testimonials/>
-        <About/>
+      </section>
+      <section id="testimonials">
+        <Testimonials />
+      </section>
+      <section id="about">
+        <About />
+      </section>
     </main>
-    );
+  );
 }
+
 export default Main;
