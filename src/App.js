@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import About from './Main-Sections/About';
 import Specials from './Main-Sections/Specials';
 import Testimonials from './Main-Sections/Testimonials';
+import BookiingPage from './Booking/BookingPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/specials" element={<Specials />} />
         <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/reservations" element={<BookiingPage />} />
       </Routes>
     <Footer/>
     </>
