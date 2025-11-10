@@ -1,4 +1,5 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import BookingForm from "./BookingForm";
 
 function BookingPage() {
@@ -13,12 +14,23 @@ function BookingPage() {
   switch (action.type) {
     case 'dateChanged':
       return updateTimes(action.date);
+    case 'setTimes':
+      return action.times;
     default:
       return state;
   }
 }
 
 const [availableTimes, dispatch] = useReducer(timesReducer, null, initializeTimes);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (reservationData.date) {
+      const newTimes = updateTimes(reservationData.date);
+      dispatch({ type: 'setTimes', times: newTimes });
+    }
+  }, [reservationData.date]);
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -32,10 +44,23 @@ const [availableTimes, dispatch] = useReducer(timesReducer, null, initializeTime
         }));
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted:', reservationData);
-    };
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const ok = Boolean(submitForm(reservationData)); // true/false
+
+  if (ok) {
+    navigate('/confirmed', {
+      state: {
+        message: 'Your reservation is confirmed!',
+        reservation: reservationData,
+      },
+    });
+  } else {
+    alert('Submission failed. Please try again.');
+  }
+};
+
+
     return(
         <BookingForm
         formData={reservationData}
@@ -45,11 +70,15 @@ const [availableTimes, dispatch] = useReducer(timesReducer, null, initializeTime
     );
 }
 
-function updateTimes(date) {
-  return ["17:00", "18:00", "19:00", "20:00"];
+function submitForm (reservationData){
+return window.API.submitAPI(reservationData);
 }
 
-function initializeTimes(){
-    return ["13:00", "14:00", "15:00", "16:00"];
+function updateTimes(date) {
+  return window.API.fetchAPI(new Date(date));
+}
+
+function initializeTimes() {
+  return window.API.fetchAPI(new Date());
 }
 export default BookingPage;

@@ -8,6 +8,7 @@ import About from './Main-Sections/About';
 import Specials from './Main-Sections/Specials';
 import Testimonials from './Main-Sections/Testimonials';
 import BookiingPage from './Booking/BookingPage';
+import ConfirmedBooking from './Booking/ConfirmedBooking';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/specials" element={<Specials />} />
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/reservations" element={<BookiingPage />} />
+        <Route path="/confirmed" element={<ConfirmedBooking />} />
       </Routes>
     <Footer/>
     </>
