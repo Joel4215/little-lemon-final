@@ -1,12 +1,13 @@
-import React, {useState} from "react";
 import './Booking.css';
 
 
 function BookingForm({ formData, availableTimes, onChange, onSubmit }) {
+    const today = new Date();
+    const minDate = today.toISOString().split('T')[0];
     return (
         <form className="booking-form" onSubmit={onSubmit}>
             <label htmlFor="res-date">Choose date</label>
-            <input type="date" id="res-date" name="date" onChange={onChange} value={formData.date}/>
+            <input type="date" id="res-date" name="date" min={minDate} onChange={onChange} value={formData.date}/>
 
             <label htmlFor="res-time">Choose time</label>
             <select id="res-time" name="time" onChange={onChange} value={formData.time}>
@@ -17,7 +18,7 @@ function BookingForm({ formData, availableTimes, onChange, onSubmit }) {
             </select>
 
             <label htmlFor="guests">Number of guests</label>
-            <input type="number" id="guests" name="guests" onChange={onChange} value={formData.guests}/>
+            <input type="number" id="guests" name="guests" min={1} onChange={onChange} value={formData.guests}/>
 
             <label htmlFor="occasion">Occasion</label>
             <select id="occasion" name="occasion" onChange={onChange} value={formData.occasion}>
@@ -27,7 +28,7 @@ function BookingForm({ formData, availableTimes, onChange, onSubmit }) {
                 <option value="other">Other</option>
             </select>
 
-            <button type="submit">Make Your reservation</button>
+            <button disabled={!formData.date || !formData.time || !formData.guests || !formData.occasion} type="submit">Make Your reservation</button>
         </form>
     );
 }

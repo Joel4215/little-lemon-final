@@ -21,6 +21,48 @@ beforeEach(() => {
   };
 });
 
+test('completes booking flow and shows confirmation', async () => {
+  // Ensure submit returns success
+  window.API.submitAPI.mockReturnValueOnce(true);
+
+  render(
+    <MemoryRouter initialEntries={["/reservations"]}>
+      <App />
+    </MemoryRouter>
+  );
+
+  // Fill date (future date to avoid filtering out times)
+  const dateInput = screen.getByLabelText(/choose date/i);
+  fireEvent.change(dateInput, { target: { value: '2025-01-02' } });
+
+  // Choose a time from updated list
+  const timeSelect = screen.getByLabelText(/choose time/i);
+  await waitFor(() => {
+    const options = within(timeSelect).getAllByRole('option').map(o => o.value);
+    expect(options.length).toBeGreaterThan(1);
+  });
+  const timeOption = within(timeSelect).getAllByRole('option').find(o => o.getAttribute('value') !== '');
+  await userEvent.selectOptions(timeSelect, timeOption.getAttribute('value'));
+
+  // Guests
+  const guestsInput = screen.getByLabelText(/number of guests/i);
+  await userEvent.clear(guestsInput);
+  await userEvent.type(guestsInput, '2');
+
+  // Occasion
+  const occasionSelect = screen.getByLabelText(/occasion/i);
+  await userEvent.selectOptions(occasionSelect, 'birthday');
+
+  // Submit
+  const submitBtn = screen.getByRole('button', { name: /make your reservation/i });
+  expect(submitBtn).toBeEnabled();
+  await userEvent.click(submitBtn);
+
+  // Confirm page rendered with success message
+  const confirmation = await screen.findByText(/your reservation is confirmed/i);
+  expect(confirmation).toBeInTheDocument();
+});
+
 afterEach(() => {
   jest.clearAllMocks();
 });

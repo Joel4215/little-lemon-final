@@ -25,12 +25,18 @@ const [availableTimes, dispatch] = useReducer(timesReducer, null, initializeTime
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (reservationData.date) {
-      const newTimes = updateTimes(reservationData.date);
-      dispatch({ type: 'setTimes', times: newTimes });
-    }
-  }, [reservationData.date]);
+useEffect(() => {
+  if (reservationData.date) {
+    const newTimes = updateTimes(reservationData.date);
+    const todayISO = new Date().toISOString().slice(0, 10);
+
+    const filtered = reservationData.date === todayISO
+      ? newTimes.filter(t => isFutureSlotOnDate(t, reservationData.date))
+      : newTimes;
+
+    dispatch({ type: 'setTimes', times: filtered });
+  }
+}, [reservationData.date]);
 
     const handleFormChange = (e) => {
         const { name, value } = e.target;
@@ -80,5 +86,12 @@ function updateTimes(date) {
 
 function initializeTimes() {
   return window.API.fetchAPI(new Date());
+}
+
+function isFutureSlotOnDate(timeStr, dateStr) {
+  const [h, m] = timeStr.split(':').map(Number);
+  const slot = new Date(dateStr);
+  slot.setHours(h, m, 0, 0);
+  return slot.getTime() > Date.now();
 }
 export default BookingPage;
