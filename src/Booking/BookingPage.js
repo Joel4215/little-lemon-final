@@ -1,6 +1,7 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import BookingForm from "./BookingForm";
+import './Booking.css';
 
 function BookingPage() {
         const [reservationData, setReservationData] = useState({
@@ -68,11 +69,17 @@ const handleSubmit = (e) => {
 
 
     return(
-        <BookingForm
-        formData={reservationData}
-        availableTimes={availableTimes}
-        onChange={handleFormChange}
-        onSubmit={handleSubmit}/>
+        <section className="booking-page">
+          <div className="booking-card">
+            <h1>Reservations</h1>
+            <BookingForm
+              formData={reservationData}
+              availableTimes={availableTimes}
+              onChange={handleFormChange}
+              onSubmit={handleSubmit}
+            />
+          </div>
+        </section>
     );
 }
 

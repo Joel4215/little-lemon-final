@@ -44,7 +44,7 @@ function Specials() {
                             <span className="price">{special.price}</span>
                         </div>
                         <p>{special.description}</p>
-                        <button className="order-btn">Order a delivery</button>
+                        <button className="button order-btn">Order Delivery</button>
                     </div>
                 </div>
 

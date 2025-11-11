@@ -4,14 +4,24 @@
     color: white;
     justify-content: center;
     align-items: center;
-    height: clamp(240px, 35vh, 400px);
+    min-height: 320px;
     overflow: visible;
     padding: 2rem;
 }
 
 .hero-box h1 {
     color: #F4CE14;
-    margin-bottom: 0.5rem;
+    margin: 0 0 0.25rem 0;
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 700; /* Karla bold */
+}
+
+.hero-box h2 {
+    margin: 0 0 0.75rem 0; /* close to title, then small gap to paragraph */
+    line-height: 1.2;
+    color: #EDEFEE; /* soft white */
+    font-weight: 700;
 }
 
 .hero-content {
@@ -25,6 +35,16 @@
 
 .hero-text {
     text-align: center;
+}
+
+.hero-text p {
+    margin-top: 0.75rem; /* restore original spacing */
+    color: #EDEFEE;
+}
+
+.hero-text .button {
+    margin-top: 1.25rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .resturaunt-img {
@@ -41,6 +61,10 @@
         gap: 2rem;
         position: relative;
         padding-right: 2rem;
+    }
+
+    .hero-box h1 {
+        font-size: 4rem;
     }
 
     .hero-text {
@@ -90,6 +114,8 @@
     max-width: 300px;
     overflow: hidden;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-image {
@@ -108,6 +134,10 @@
 
 .card-content {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: 100%;
 }
 
 .card-header {
@@ -140,6 +170,17 @@
 
 .special-card {
     flex: 0 1 260px;
+}
+
+.order-btn {
+    margin-top: auto;
+    background-color: #F4CE14;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 /* Testimonials Section Styles */

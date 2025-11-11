@@ -10,7 +10,7 @@ function Hero() {
                     <h1>Little Lemmon</h1>
                     <h2>Chicago</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Fresh, vibrant Mediterranean dishes crafted with seasonal ingredients and a dash of sunny Chicago hospitality.
                     </p>
                     <button className="button">Reserve a Table</button>
                 </div>
